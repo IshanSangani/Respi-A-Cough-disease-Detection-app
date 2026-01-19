@@ -1,13 +1,26 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { colors, cardStyle, spacing } from '@/theme';
-import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Button } from '@/components/Button';
+import { cardStyle, colors, spacing } from '@/theme';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useLocalSearchParams, useRouter, useSegments } from 'expo-router';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default function ResultScreen() {
   const { prediction, confidence, timestamp } = useLocalSearchParams<{ prediction?: string; confidence?: string; timestamp?: string }>();
   const router = useRouter();
+  const segments = useSegments();
+
+  React.useEffect(() => {
+    // If someone navigates to the stack-only route, force it under the tabs layout
+    // so the UI stays consistent.
+    if (segments?.[0] === '(protected)' && segments?.[1] === 'result') {
+      router.replace({
+        pathname: '/(protected)/(tabs)/result',
+        params: { prediction, confidence, timestamp },
+      });
+    }
+  }, [segments, prediction, confidence, timestamp, router]);
+
   return (
     <LinearGradient colors={[colors.bgGradientStart, colors.bgGradientEnd]} style={styles.screen}>
       <View style={styles.card}>
@@ -16,10 +29,10 @@ export default function ResultScreen() {
         <Text style={styles.confidence}>Confidence: {confidence}</Text>
         <Text style={styles.timestamp}>Timestamp: {timestamp}</Text>
         <View style={styles.spacing}>
-          <Button onPress={() => router.push('/(protected)/history')}>Full History</Button>
+          <Button onPress={() => router.push('/(protected)/(tabs)/history')}>Full History</Button>
         </View>
         <View style={styles.spacing}>
-          <Button variant="secondary" onPress={() => router.replace('/(protected)')}>Home</Button>
+          <Button variant="secondary" onPress={() => router.replace('/(protected)/(tabs)')}>Home</Button>
         </View>
       </View>
     </LinearGradient>

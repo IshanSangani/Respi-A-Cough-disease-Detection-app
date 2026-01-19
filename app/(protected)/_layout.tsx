@@ -1,13 +1,12 @@
-import React from 'react';
 import { Stack } from 'expo-router';
+import React from 'react';
 
 // Protected stack now nests a tab navigator for primary app sections.
-// The result screen stays stack-only so it can be pushed without showing the tab bar.
+// Result is provided under (tabs) to keep the UI consistent.
 export default function ProtectedLayout() {
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="(tabs)" />
-      <Stack.Screen name="result" />
     </Stack>
   );
 }

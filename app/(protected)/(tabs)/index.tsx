@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
-import { View, Text, StyleSheet, Animated, Pressable } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { colors, cardStyle, softCardStyle, spacing, typography, radius } from '@/theme';
+import { cardStyle, colors, radius, softCardStyle, spacing, typography } from '@/theme';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter } from 'expo-router';
+import React, { useRef } from 'react';
+import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
 
 const metricData = [
   { label: 'Sessions', value: '12', icon: 'pulse' as const },
@@ -13,6 +14,7 @@ const metricData = [
 const lineTrend = [60, 58, 62, 65, 63, 67, 70];
 
 export default function HomeTab() {
+  const router = useRouter();
   const scaleRefs = useRef(metricData.map(() => new Animated.Value(1))).current;
 
   const pressIn = (i: number) => {
@@ -64,7 +66,7 @@ export default function HomeTab() {
 
       <View style={styles.activityHeaderRow}>
         <Text style={styles.feedTitle}>Recent Activity</Text>
-        <Pressable><Text style={styles.viewAll}>View all</Text></Pressable>
+        <Pressable onPress={() => router.push('/(protected)/(tabs)/history')}><Text style={styles.viewAll}>View all</Text></Pressable>
       </View>
       <View style={styles.timeline}>
         <View style={styles.timelineItem}> 

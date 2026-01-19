@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, ActivityIndicator, StyleSheet } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { colors, cardStyle, spacing } from '@/theme';
 import { fetchHistory, HistoryEntry } from '@/lib/auth';
+import { cardStyle, colors, spacing } from '@/theme';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function HistoryScreen() {
   const [data, setData] = useState<HistoryEntry[]>([]);
@@ -43,7 +43,7 @@ export default function HistoryScreen() {
           keyExtractor={(item, idx) => `${item.timestamp}-${idx}`}
           renderItem={({ item }) => (
             <TouchableOpacity
-              onPress={() => router.push({ pathname: '/(protected)/result', params: { prediction: item.prediction, confidence: String(item.confidence), timestamp: item.timestamp } })}
+              onPress={() => router.push({ pathname: '/(protected)/(tabs)/result', params: { prediction: item.prediction, confidence: String(item.confidence), timestamp: item.timestamp } })}
               style={styles.listCard}
             >
               <Text style={styles.cardTitle}>{item.prediction}</Text>

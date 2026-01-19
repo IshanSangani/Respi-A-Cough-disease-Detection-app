@@ -1,10 +1,10 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { colors, cardStyle, spacing } from '@/theme';
 import { Button } from '@/components/Button';
-import { useRouter } from 'expo-router';
 import { useAuth } from '@/hooks/useAuth';
+import { cardStyle, colors, spacing } from '@/theme';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter } from 'expo-router';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default function HomeProtected() {
   const router = useRouter();
@@ -19,7 +19,7 @@ export default function HomeProtected() {
         <View style={styles.actionCard}>
           <Text style={styles.cardHeading}>Quick Actions</Text>
           <View style={styles.cardSpacing}><Button onPress={() => router.push('/(protected)/record')}>Record Sample</Button></View>
-          <View style={styles.cardSpacing}><Button variant="secondary" onPress={() => router.push('/(protected)/history')}>History</Button></View>
+          <View style={styles.cardSpacing}><Button variant="secondary" onPress={() => router.push('/(protected)/(tabs)/history')}>History</Button></View>
           <View style={styles.cardSpacing}><Button variant="outline" onPress={logout}>Logout</Button></View>
         </View>
       </View>

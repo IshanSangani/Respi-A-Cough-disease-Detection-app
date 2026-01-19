@@ -1,9 +1,9 @@
-import React from 'react';
-import { Tabs } from 'expo-router';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { colors, spacing } from '@/theme';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Tabs } from 'expo-router';
+import React from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 function CustomTabBar({ state, descriptors, navigation }: any) {
   return (
@@ -12,6 +12,7 @@ function CustomTabBar({ state, descriptors, navigation }: any) {
       <View style={styles.bar}>
         {state.routes.map((route: any, index: number) => {
           if (route.name === 'profile') return null; // Skip deprecated profile route
+          if (route.name === 'result') return null; // Hide result from the tab bar
           const { options } = descriptors[route.key];
           const rawLabel = options.title || route.name;
           const label = rawLabel === 'index' ? 'Home' : rawLabel;
@@ -59,6 +60,7 @@ export default function ProtectedTabsLayout() {
       <Tabs.Screen name="history" options={{ title: 'History' }} />
       <Tabs.Screen name="insights" options={{ title: 'Insights' }} />
       <Tabs.Screen name="account" options={{ title: 'Account' }} />
+      <Tabs.Screen name="result" options={{ href: null }} />
     </Tabs>
   );
 }

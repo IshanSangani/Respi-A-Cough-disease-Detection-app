@@ -30,6 +30,10 @@ yarn-error.*
 .DS_Store
 *.pem
 
+# Windows
+Thumbs.db
+Desktop.ini
+
 # local env files
 .env*.local
 
@@ -41,3 +45,45 @@ app-example
 # generated native folders
 /ios
 /android
+
+# -------------------------
+# Python
+# -------------------------
+__pycache__/
+*.py[cod]
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# -------------------------
+# Machine Learning artifacts (large/binary)
+# -------------------------
+Machine_Learning/uploads/
+Machine_Learning/*.wav
+Machine_Learning/*.m4a
+Machine_Learning/*.mp3
+Machine_Learning/*.flac
+Machine_Learning/*.ogg
+Machine_Learning/*.h5
+Machine_Learning/*.keras
+Machine_Learning/*.pkl
+Machine_Learning/*.joblib
+Machine_Learning/*.bak
+
+# -------------------------
+# Java / Spring Boot
+# -------------------------
+backend/**/target/
+backend/**/.classpath
+backend/**/.project
+backend/**/.settings/
+
+# -------------------------
+# IDEs
+# -------------------------
+.idea/
+backend/.idea/
+.vscode/
