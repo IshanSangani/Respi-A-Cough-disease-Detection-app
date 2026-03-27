@@ -1,4 +1,5 @@
 import { fetchHistory, HistoryEntry } from '@/lib/auth';
+import { modelLabel } from '@/lib/modelLabels';
 import { cardStyle, colors, spacing } from '@/theme';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
@@ -43,9 +44,10 @@ export default function HistoryScreen() {
           keyExtractor={(item, idx) => `${item.timestamp}-${idx}`}
           renderItem={({ item }) => (
             <TouchableOpacity
-              onPress={() => router.push({ pathname: '/(protected)/(tabs)/result', params: { prediction: item.prediction, confidence: String(item.confidence), timestamp: item.timestamp } })}
+              onPress={() => router.push({ pathname: '/(protected)/(tabs)/result', params: { prediction: item.prediction, confidence: String(item.confidence), timestamp: item.timestamp, model: item.model } })}
               style={styles.listCard}
             >
+              {item.model ? <Text style={styles.cardModel}>Model: {modelLabel(item.model)}</Text> : null}
               <Text style={styles.cardTitle}>{item.prediction}</Text>
               <Text style={styles.cardSubtitle}>Confidence: {item.confidence}</Text>
               <Text style={styles.cardTimestamp}>{item.timestamp}</Text>
@@ -66,6 +68,7 @@ const styles = StyleSheet.create({
   cardWrapper: { ...cardStyle, flex: 1 },
   title: { fontSize: 30, fontWeight: '700', color: colors.primaryDark, marginBottom: spacing.md },
   listCard: { marginBottom: spacing.sm, backgroundColor: colors.surfaceAlt, padding: spacing.md, borderRadius: spacing.md, borderWidth: 1, borderColor: colors.border },
+  cardModel: { fontSize: 12, color: colors.textDim, marginBottom: 4 },
   cardTitle: { fontSize: 18, fontWeight: '600', color: colors.primary, marginBottom: 4 },
   cardSubtitle: { fontSize: 14, color: colors.text },
   cardTimestamp: { fontSize: 12, color: colors.textDim, marginTop: 4 },

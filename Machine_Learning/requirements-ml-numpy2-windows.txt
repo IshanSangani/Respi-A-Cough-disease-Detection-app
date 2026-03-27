@@ -1,0 +1,14 @@
+# Windows env that can unpickle sklearn joblib models created under NumPy 2.x
+# Use this if you see: "MT19937 is not a known BitGenerator module" when loading *.pkl
+
+numpy==2.0.2
+
+flask
+librosa
+soundfile
+pandas
+joblib
+scikit-learn
+
+# ResNet via ONNX
+onnxruntime

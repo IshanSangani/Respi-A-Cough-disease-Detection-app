@@ -12,6 +12,7 @@ export interface UploadResult {
 export type UploadAudioOptions = {
   filename?: string;
   mimeType?: string;
+  modelKey?: string;
 };
 
 export async function uploadAudioAsync(
@@ -52,6 +53,7 @@ export async function uploadAudioAsync(
     type: mime,
   } as any);
   if (userId) form.append('userId', String(userId));
+  if (options?.modelKey) form.append('model', String(options.modelKey));
 
   try {
     console.info('[Upload] audio uri:', uri);
@@ -66,6 +68,7 @@ export async function uploadAudioAsync(
         prediction: res.data?.prediction,
         confidence: res.data?.confidence,
         timestamp: res.data?.timestamp,
+        model: res.data?.model || options?.modelKey,
       });
     } catch (e) {
       // If user isn't logged in or backend not reachable, ignore.

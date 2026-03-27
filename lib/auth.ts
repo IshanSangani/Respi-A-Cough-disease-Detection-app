@@ -40,6 +40,7 @@ export async function registerRequest(email: string, password: string): Promise<
 }
 
 export interface HistoryEntry {
+  model?: string;
   prediction: string;
   confidence: number;
   timestamp: string;
@@ -59,6 +60,7 @@ export async function fetchHistory(): Promise<HistoryEntry[]> {
     // Return lightweight mock sample so UI has content
     return [
       {
+        model: 'rf',
         prediction: 'Sample (mock)',
         confidence: 0.86,
         timestamp: new Date().toISOString(),

@@ -1,0 +1,14 @@
+# ResNet via ONNX Runtime (Windows)
+# Uses NumPy 1.26 to avoid ABI issues with many compiled wheels.
+
+numpy==1.26.4
+
+flask
+librosa
+soundfile
+pandas
+joblib
+scikit-learn
+
+# ONNX runtime (CPU). If this fails to import on your machine, use requirements-resnet-onnx-directml-windows.txt instead.
+onnxruntime

@@ -1,0 +1,19 @@
+# Windows (recommended) ResNet runtime
+# Matches Colab TensorFlow/Keras but uses NumPy 1.26 to avoid ABI issues with many compiled wheels on Windows.
+# Colab versions reported by user: tf==2.19.0, keras==3.13.2, numpy==2.0.2
+
+numpy==1.26.4
+tensorflow==2.19.0
+keras==3.13.2
+
+# Runtime deps used by eg1.py
+flask
+librosa
+soundfile
+pandas
+joblib
+scikit-learn
+
+# Optional: only if you truly need them elsewhere; can break TF import if mismatched
+# matplotlib
+# opencv-python

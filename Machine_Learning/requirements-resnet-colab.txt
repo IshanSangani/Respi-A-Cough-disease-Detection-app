@@ -1,0 +1,13 @@
+# Attempt exact Colab version match
+# WARNING: On Windows this can fail if you have wheels built against NumPy 1.x (e.g. opencv-python, matplotlib).
+
+numpy==2.0.2
+tensorflow==2.19.0
+keras==3.13.2
+
+flask
+librosa
+soundfile
+pandas
+joblib
+scikit-learn

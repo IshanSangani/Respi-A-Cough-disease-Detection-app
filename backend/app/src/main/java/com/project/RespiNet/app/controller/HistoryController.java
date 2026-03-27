@@ -27,6 +27,9 @@ public class HistoryController {
         @NotNull
         public Double confidence;
 
+        // Optional model key from ML response (rf/logreg/mlp/svm)
+        public String model;
+
         // Optional ISO timestamp string from ML response
         public String timestamp;
     }
@@ -52,6 +55,7 @@ public class HistoryController {
 
         HistoryEntry entry = new HistoryEntry();
         entry.setUserEmail(email);
+        entry.setModel(body.model != null && !body.model.isBlank() ? body.model : null);
         entry.setPrediction(body.prediction);
         entry.setConfidence(body.confidence);
         entry.setTimestamp(body.timestamp != null && !body.timestamp.isBlank() ? body.timestamp : Instant.now().toString());

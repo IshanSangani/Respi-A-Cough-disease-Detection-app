@@ -1,0 +1,13 @@
+# ResNet via ONNX Runtime DirectML (Windows)
+# Use this if onnxruntime (CPU) fails to import / DLL init fails.
+
+numpy==1.26.4
+
+flask
+librosa
+soundfile
+pandas
+joblib
+scikit-learn
+
+onnxruntime-directml

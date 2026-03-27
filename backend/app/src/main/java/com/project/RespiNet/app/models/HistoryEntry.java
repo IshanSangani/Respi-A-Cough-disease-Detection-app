@@ -18,6 +18,11 @@ public class HistoryEntry {
 
     private String userEmail;
 
+    /**
+     * The ML model key used for this prediction (e.g. rf, logreg, mlp, svm).
+     */
+    private String model;
+
     private String prediction;
 
     private Double confidence;
